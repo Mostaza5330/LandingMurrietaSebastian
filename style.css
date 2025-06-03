@@ -1,0 +1,448 @@
+ /* Variables CSS para consistencia y facilidad de mantenimiento */
+        :root {
+            --primary-color: #455A64;
+            --secondary-color: #37474F;
+            --accent-color: #546E7A;
+            --cinema-gold: #BDBDBD;
+            --cinema-red: #D32F2F;
+            --text-primary: #CFD8DC;
+            --text-secondary: #B0BEC5;
+            --text-light: #ECEFF1;
+            --bg-primary: #263238;
+            --bg-secondary: #37474F;
+            --bg-glass: rgba(55, 71, 79, 0.6);
+            --bg-card: rgba(55, 71, 79, 0.4);
+            --shadow-light: 0 4px 6px rgba(0, 0, 0, 0.07);
+            --shadow-medium: 0 10px 25px rgba(0, 0, 0, 0.15);
+            --shadow-heavy: 0 20px 40px rgba(0, 0, 0, 0.2);
+            --border-radius: 12px;
+            --border-radius-lg: 20px;
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 50%, var(--accent-color) 100%);
+            background-attachment: fixed;
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+
+        /* Header con efecto cinematográfico */
+        header {
+            background: var(--bg-glass);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: var(--text-light);
+            padding: 60px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            animation: slideDown 1s cubic-bezier(0.4, 0, 0.2, 1);
+            margin-bottom: 40px;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 215, 0, 0.1), transparent);
+            animation: cinemaShimmer 4s infinite;
+            pointer-events: none;
+        }
+
+        @keyframes cinemaShimmer {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
+        header h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+            background: linear-gradient(45deg, #ffffff, silver, #ffffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: textGlow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes textGlow {
+            from { filter: drop-shadow(0 0 5px rgba(255, 215, 0, 0.3)); }
+            to { filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.6)); }
+        }
+
+        header p {
+            font-size: 1.3rem;
+            font-weight: 400;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Contenedor principal con grid mejorado */
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px 40px;
+            display: grid;
+            gap: 40px;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        }
+
+        /* Secciones con efectos glassmorphism mejorados */
+        section {
+            background: var(--bg-card);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: var(--border-radius-lg);
+            padding: 35px;
+            box-shadow: var(--shadow-medium);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            animation-fill-mode: both;
+        }
+
+        section:nth-child(1) { animation-delay: 0.2s; }
+        section:nth-child(2) { animation-delay: 0.4s; }
+        section:nth-child(3) { animation-delay: 0.6s; }
+
+        /* Efecto especial para la sección de portada */
+        #portada {
+            grid-column: 1 / -1;
+            text-align: center;
+            background: linear-gradient(135deg, var(--bg-card), rgba(255, 147, 251, 0.1));
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        #portada::before {
+            content: '🎬';
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            font-size: 3rem;
+            opacity: 0.3;
+            animation: rotate 10s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        #portada p {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            line-height: 1.8;
+        }
+
+        /* Efectos hover mejorados */
+        section:hover {
+            transform: translateY(-12px) scale(1.02);
+            box-shadow: var(--shadow-heavy);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+
+        section::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: left 0.6s ease;
+        }
+
+        section:hover::after {
+            left: 100%;
+        }
+
+        /* Títulos con efectos cinematográficos */
+        h2 {
+            color: var(--text-light);
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+            position: relative;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--cinema-gold), var(--accent-color));
+            transition: width 0.5s ease;
+        }
+
+        section:hover h2::after {
+            width: 100%;
+        }
+
+        /* Lista de películas con efectos especiales */
+        #series-peliculas {
+            background: linear-gradient(135deg, var(--bg-card), rgba(231, 76, 60, 0.1));
+            border-left: 4px solid var(--cinema-red);
+        }
+
+        #series-peliculas::before {
+            content: '🎭';
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 2rem;
+            opacity: 0.4;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        li {
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: var(--border-radius);
+            border-left: 4px solid var(--cinema-gold);
+            transition: var(--transition);
+            color: var(--text-light);
+            position: relative;
+            cursor: pointer;
+            font-weight: 500;
+        }
+
+        li:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateX(12px) scale(1.02);
+            box-shadow: var(--shadow-light);
+            border-left-color: var(--cinema-red);
+        }
+
+        li::before {
+            content: '🎬';
+            position: absolute;
+            left: -25px;
+            top: 50%;
+            transform: translateY(-50%);
+            opacity: 0;
+            transition: var(--transition);
+            font-size: 1.2rem;
+        }
+
+        li:hover::before {
+            opacity: 1;
+            left: -15px;
+        }
+
+        /* Sección de contacto mejorada */
+        #contacto {
+            background: linear-gradient(135deg, var(--bg-card), rgba(102, 126, 234, 0.1));
+            border-left: 4px solid var(--primary-color);
+        }
+
+        #contacto::before {
+            content: '📧';
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 2rem;
+            opacity: 0.4;
+        }
+
+        #contacto p {
+            color: var(--text-light);
+            font-size: 1.1rem;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+        }
+
+        #contacto a {
+            color: var(--cinema-gold);
+            text-decoration: none;
+            transition: var(--transition);
+            border-bottom: 2px solid transparent;
+        }
+
+        #contacto a:hover {
+            border-bottom-color: var(--cinema-gold);
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+        }
+
+        /* Footer cinematográfico */
+        footer {
+            text-align: center;
+            padding: 50px 20px;
+            background: var(--bg-glass);
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: var(--border-radius-lg) var(--border-radius-lg) 0 0;
+            color: var(--text-light);
+            margin-top: 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--cinema-gold), transparent);
+        }
+
+        footer p {
+            font-size: 1rem;
+            opacity: 0.9;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Animaciones de entrada */
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        /* Responsive Design Mejorado */
+        @media (max-width: 768px) {
+            header {
+                padding: 40px 20px;
+            }
+            
+            header h1 {
+                font-size: 2.2rem;
+            }
+            
+            header p {
+                font-size: 1.1rem;
+            }
+            
+            main {
+                grid-template-columns: 1fr;
+                padding: 0 15px 30px;
+                gap: 25px;
+            }
+            
+            section {
+                padding: 25px;
+            }
+            
+            section:hover {
+                transform: translateY(-8px) scale(1.01);
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header {
+                padding: 30px 15px;
+            }
+            
+            header h1 {
+                font-size: 1.8rem;
+            }
+            
+            header p {
+                font-size: 1rem;
+            }
+            
+            section {
+                padding: 20px;
+            }
+
+            li {
+                padding: 12px 16px;
+            }
+        }
+
+        /* Accesibilidad mejorada */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        /* Estados de enfoque mejorados */
+        section:focus-within,
+        li:focus,
+        a:focus {
+            outline: 3px solid var(--cinema-gold);
+            outline-offset: 4px;
+        }
+
+        /* Mejoras para modo oscuro */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --text-primary: #e2e8f0;
+                --text-secondary: #cbd5e0;
+                --bg-glass: rgba(255, 255, 255, 0.08);
+                --bg-card: rgba(255, 255, 255, 0.05);
+            }
+        }
+
+        /* Efectos adicionales para interactividad */
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        section:hover::before {
+            animation: pulse 2s infinite;
+        }
+
+        /* Mejora de contraste para mejor legibilidad */
+        p, li {
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
